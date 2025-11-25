@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Weather for 5 random countries in {{ continent }}</h1>
+
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% endif %}
+
+    {% if results %}
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Country</th>
+                <th>Capital</th>
+                <th>Temperature (°C)</th>
+                <th>Description</th>
+            </tr>
+            {% for item in results %}
+            <tr>
+                <td>{{ item.country }}</td>
+                <td>{{ item.capital }}</td>
+                <td>{{ item.temperature }}</td>
+                <td>{{ item.description }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+
+    <p><a href="{% url 'continent_form' %}">New Search</a></p>
+    <p><a href="{% url 'history' %}">View History</a></p>
+</body>
+</html>
